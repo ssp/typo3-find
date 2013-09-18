@@ -182,6 +182,9 @@
 .tx_find .detail.wort .hieroglyph {
   float: right;
 }
+.tx_find #svgFilterContainer {
+  display: none;
+}
 .tx_find ul.photo-collections {
   padding: 0;
 }

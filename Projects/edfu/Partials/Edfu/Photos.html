@@ -15,7 +15,21 @@
 			<div id="slider-brightness" class="slider"></div>
 		</div>
 	</div>
-
+		<svg xmlns="http://www.w3.org/2000/svg" type="svg/xml">
+			<filter id='myFilter'>
+				<feComponentTransfer>
+					<feFuncR type='linear' intercept='0.1' slope='1'/>
+					<feFuncG type='linear' intercept='1' slope='1'/>
+					<feFuncB type='linear' intercept='1' slope='1'/>
+				</feComponentTransfer>
+				<feGaussianBlur stdDeviation="3"/>
+			</filter>
+		</svg>
+		<style type="text/css">
+		.tx_find .fotorama-container img {
+			filter:url("#myFilter");
+		}
+		</style>
 	<div class="fotorama-container">
 		<ul
 			class="photos fotorama"
@@ -66,5 +80,7 @@
 		</ul>
 
 		<a class="new-window icon-popup" target="_blank" title="{f:translate(key:'LLL:{settings.languageRootPath}locallang-edfu.xml:Bild in neuem Fenster zeigen')}"></a>
+
+		<div id="svgFilterContainer"></div>
 	</div>
 </section>

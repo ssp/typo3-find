@@ -17,7 +17,25 @@ var edfu = (function () {
 		var filterString = filterStrings.join(' ');
 
 		var jFotorama = jQuery('.fotorama__stage__shaft, .powerzoomer .inner');
-		jFotorama.css({'filter': filterString, '-webkit-filter': filterString});
+		/*
+		//jFotorama.css({'filter': filterString, '-webkit-filter': filterString});
+		jFotorama.addClass('myFilter');
+		jQuery('#myFilter').remove();
+		var value = jQuery('.ui-slider').slider('value') / 100;
+		console.log(value);
+		var svgString = "\
+		<style type='text/css'>.fotorama__stage img{ filter:url('#myFilter'); }</style>\
+		<svg>\
+			<filter id='myFilter'>\
+				<feComponentTransfer>\
+		<feFuncR type='linear' intercept='-0.8' slope='1'/>\
+       <feFuncG type='linear' intercept='-0.2' slope='1'/>\
+       <feFuncB type='linear' intercept='-0.2' slope='1'/>\
+				</feComponentTransfer>\
+			</filter>\
+		</svg>";
+		jQuery('#svgFilterContainer').empty().append(svgString);
+*/
 	};
 
 
