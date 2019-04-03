@@ -151,10 +151,18 @@ var tx_find = (function () {
     jGraphDiv.css({'width': graphWidth + 'px', 'height': canvasHeight + 'px', 'position': 'relative'});
 
     var startSearchWithNewFacet = function (event, range) {
-      var linkTemplate = $(event.target).closest('.histogram').data('link');
-      var facetQueryString = 'RANGE%20' + range.from + '%20TO%20' + range.to;
-      var facetLink = linkTemplate.replace('%25%25%25%25', facetQueryString);
-      window.location.href = facetLink;
+      var jHistogram = $(event.target).closest('.histogram');
+      var linkTemplate = jHistogram.data('link');
+      var facetQueryString = 'RANGE ' + range.from + ' TO ' + range.to;
+
+      var facetConfig = jHistogram.data('facet-config');
+      // only change the location if the facet selection has changed
+      var myFacetData = facetConfig.activeFacets[facetConfig.id];
+      var firstActiveFacetValue = Object.keys(myFacetData)[0];
+      if (firstActiveFacetValue !== facetQueryString) {
+        var facetLink = linkTemplate.replace('%25%25%25%25', escape(facetQueryString));
+        window.location.href = facetLink;
+      }
     };
 
     var terms = facetConfig.data;
@@ -259,7 +267,6 @@ var tx_find = (function () {
 
       return outputRange;
     };
-
 
     /**
      * Rounds the xaxis range of the passed ranges, selects the resulting
